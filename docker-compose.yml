@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: my-root-pw
+      MYSQL_DATABASE: magazine
+      MYSQL_USER: user
+      MYSQL_PASSWORD: my-secret-pw
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+    restart: always
+  api:
+    networks:
+      - backend
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    hostname: api
+    ports:
+      - '8901:8901'
+    restart: always
+    environment:
+      PORT: '8901'
+      DATABASE_URL: "mysql://user:my-secret-pw@localhost:3306/magazine"
+    depends_on:
+      - db
+    links:
+      - db
+  web:
+    networks:
+      - backend
+    build:
+      context: .
+      dockerfile: web.dockerfile
+    hostname: web
+    ports:
+      - '5173:5173'
+    restart: always
+    volumes:
+      - web:/web/dist
+  nginx:
+    image: shakyshane/nginx-cors-plus
+    ports:
+      - 8090:80
+    environment:
+      - TARGET=http://localhost:5173
+volumes:
+  api:
+  web:
+  db_data:
+networks:
+  backend:
+    driver: bridge

@@ -1,0 +1,8 @@
+.container {
+  /* max-width: 1000px; */
+  width: 100%;
+}
+
+.banner-left, .banner-right {
+  width: 15%;
+}
