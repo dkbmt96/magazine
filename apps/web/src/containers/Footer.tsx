@@ -3,20 +3,7 @@ import Tags from "../components/Tags";
 import BottomLogo from "../components/BottomLogo";
 import QuickLinks from "../components/QuickLinks";
 
-const categories = [
-  { name: "Politics", id: 0 },
-  { name: "Business", id: 1 },
-  { name: "Corporate", id: 2 },
-  { name: "Sports", id: 3 },
-  { name: "Health", id: 4 },
-  { name: "Education", id: 5 },
-  { name: "Science", id: 6 },
-  { name: "Travel", id: 7 },
-  { name: "Foods", id: 8 },
-  { name: "Lifestyle", id: 9 },
-  { name: "Science", id: 10 },
-  { name: "Entertaiment", id: 11 },
-];
+
 
 const Footer: React.FC = () => {
   return (
@@ -26,10 +13,10 @@ const Footer: React.FC = () => {
           <BottomLogo />
         </div>
         <div className="basis-1/4">
-          <Tags title="Categoies" tags={categories} />
+          <Tags title="Categoies" tags={[]} />
         </div>
         <div className="basis-1/4">
-          <Tags title="Tags" tags={categories} />
+          <Tags title="Tags" tags={[]} />
         </div>
         <div className="basis-1/4">
           <QuickLinks />

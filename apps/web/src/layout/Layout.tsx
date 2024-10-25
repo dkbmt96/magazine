@@ -5,7 +5,7 @@ import Footer from "../containers/Footer";
 
 const Layout: React.FC<{ children: any }> = ({ children }) => {
   return (
-    <div className="container w-full bg-gray-200">
+    <div className="container max-w-full w-full bg-gray-100">
       <Header />
       <div className="flex h-auto min-h-80">
         <div className="banner-left"></div>

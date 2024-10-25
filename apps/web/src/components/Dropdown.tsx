@@ -31,7 +31,7 @@ const Dropdown: React.FC<{ options: string[]; label: string }> = ({
         </span>
       </div>
       {isOpen && (
-        <div className="absolute border bg-white w-full mt-1 top-12">
+        <div className="absolute border bg-white w-full mt-1 top-12 z-20">
           {options.map((option, index) => (
             <div key={index} className="p-2 hover:bg-gray-300 cursor-pointer">
               {option}

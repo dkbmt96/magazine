@@ -10,10 +10,13 @@
   "scripts": {
     "dev:web": "cd apps/web && yarn dev",
     "dev:api": "cd apps/api && node index.js",
-
     "build:web": "cd apps/web && yarn build",
     "build:api": "cd apps/api && yarn build",
-
     "up": "docker-compose up --build"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2"
   }
 }
