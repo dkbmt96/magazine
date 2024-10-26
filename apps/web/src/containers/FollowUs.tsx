@@ -34,6 +34,7 @@ const FollowUs: React.FC = () => {
       <div className="grid grid-cols-2 gap-4 mt-4">
         {socials.map((item, idx) => (
           <button
+            key={`${idx}-${item.iconName}`}
             onClick={() => {
               return;
             }}

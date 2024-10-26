@@ -43,7 +43,7 @@ const CARDS: CardType[] = [
   },
 ];
 
-const MiniCards: React.FC = () => {
+const MiniCards: React.FC<{news: any}> = ({news}) => {
   let cards = CARDS; // Will fetch later
   const [index, setIndex] = React.useState([0, 1, 2]);
   

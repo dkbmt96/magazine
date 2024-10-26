@@ -10,6 +10,7 @@ const TopMenu: React.FC = () => {
     <div className="flex bg-white px-8 items-center z-11">
       <div className="flex w-2/3">
         {routers.routes.map((item) => {
+          const cleanPath = item.path?.split(':')[0];
           if (item.children?.length) {
             const opts = item.children.map((child) => child.id);
             return <Dropdown key={item.id} label={item.id} options={opts} />;
@@ -17,9 +18,9 @@ const TopMenu: React.FC = () => {
           return (
             <Link
               key={item.id}
-              to={item.path}
+              to={cleanPath}
               className={`p-4 w-fit ${
-                pathname === item.path ? "bg-red-500" : ""
+                pathname === cleanPath ? "bg-red-500" : ""
               } hover:bg-gray-200`}
             >
               {item.id}

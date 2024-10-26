@@ -1,7 +1,8 @@
 import React from "react";
 import { Card as CartType } from "../types";
+import { Link } from "react-router-dom";
 
-const Card: React.FC<CartType> = ({ content, url, category, updateAt }) => {
+const Card: React.FC<CartType> = ({ id, content, url, category, updateAt }) => {
   return (
     <div className="flex items-center bg-white">
       <div className="w-16 h-16 relative overflow-hidden">
@@ -19,7 +20,9 @@ const Card: React.FC<CartType> = ({ content, url, category, updateAt }) => {
             </div>
           </div>
         )}
-        <div className="font-bold pr-2">{content}</div>
+        <Link to={`/news/${id}`}>
+          <div className="font-bold pr-2">{content}</div>
+        </Link>
       </div>
     </div>
   );

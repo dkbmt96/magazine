@@ -1,17 +1,32 @@
-import express from 'express';
-import { graphqlHTTP } from 'express-graphql';
-import schema from './schema/schema.js';
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const mongoose = require('mongoose');
+const schema = require('./graphql/schema');
+const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 8901;
 
-// Define a GraphQL endpoint
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/newsdb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+// Enable CORS for all routes
+app.use(cors());
+
+// Set up GraphQL endpoint
 app.use('/graphql', graphqlHTTP({
-    schema,
-    graphiql: true, // Enables the GraphiQL interface
+  schema,
+  graphiql: true, // Enable GraphiQL interface for testing queries
 }));
 
-// Start the server
+const PORT = process.env.PORT || 8901;
+
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}/graphql`);
+  console.log(`Server is running on port ${PORT}`);
 });

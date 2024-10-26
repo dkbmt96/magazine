@@ -50,12 +50,12 @@ const News: React.FC<{
   picPerSlide?: number;
 }> = ({ header, items }) => {
   return (
-    <div className="w-full mb-4">
+    <div className="w-full mb-8">
       <BlockHeader header={header} link="/" />
       <div className={`grid grid-cols-2 gap-4`}>
         {[0, 1].map((i) => (
           <div className={`overflow-hidden w-full`}>
-            <VCard {...ITEMS[i]} />
+            <VCard key={ITEMS[i].id} {...ITEMS[i]} />
           </div>
         ))}
         {[0, 1, 2, 3].map((c) => (

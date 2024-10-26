@@ -1,0 +1,7 @@
+schema: 'http://localhost:8901/graphql' # or the path to your schema file
+documents: 'src/graphql/*' # path to your GraphQL documents (queries, mutations, etc.)
+generates:
+  src/generated/graphql.ts: # output file for generated types
+    plugins:
+      - 'typescript'
+      - 'typescript-resolvers'

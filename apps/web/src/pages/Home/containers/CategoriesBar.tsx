@@ -1,5 +1,6 @@
 import React from "react";
 import BlockHeader from "@components/BlockHeader";
+import { Link } from "react-router-dom";
 
 const ITEMS = [
   {
@@ -30,13 +31,14 @@ const CategoriesBar: React.FC = () => {
     <div className="flex flex-col gap-6">
       <BlockHeader header="Categories" link="/categories"/>
       {ITEMS.map((item) => (
-        <div
-          key={item.id}
-          className="w-full h-14 justify-center text-white text-2xl flex items-center"
-          style={{
-            backgroundImage: `url(${item.url})`,
-          }}
-        >{item.category}</div>
+        <Link key={item.id} to={`/categories/${item.id}`}>
+          <div
+            className="w-full h-14 justify-center text-white text-2xl flex items-center"
+            style={{
+              backgroundImage: `url(${item.url})`,
+            }}
+          >{item.category}</div>
+        </Link>
       ))}
     </div>
   );
