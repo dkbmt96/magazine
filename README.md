@@ -2,6 +2,7 @@
 
 
 A monorepo website using 
+  - Monorepo: Yarn workspace
   - FE: ReactJS + Redux + Redux Thunk + Redux Toolkits (RTK)
   - BE: Nodejs + Express + Graphql
   - Database: MongoDB
