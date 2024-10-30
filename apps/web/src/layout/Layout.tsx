@@ -8,17 +8,17 @@ import Tranding from "../containers/Tranding";
 import Tags from "@components/Tags";
 import BlockHeader from "@components/BlockHeader";
 import { useDispatch } from "react-redux";
-import { fetchData } from "@redux/dataSlice";
+import { recentlyNews } from "@redux/dataSlice";
 
 const Layout: React.FC<{
   children: any;
   upperContent?: any;
   lowerContent?: any;
 }> = ({ children, upperContent, lowerContent }) => {
-  
+
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(fetchData());
+    dispatch(recentlyNews());
   }, [dispatch]);
 
   return (

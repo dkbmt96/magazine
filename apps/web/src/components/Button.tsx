@@ -4,10 +4,11 @@ const Button: React.FC<{
   children: string;
   onClick(event: any): void;
   cls?: string;
-}> = ({ children, onClick, cls }) => {
+  type?: 'button' | 'submit'
+}> = ({ children, onClick, cls, type = "button" }) => {
   return (
     <button
-      type="button"
+      type={type}
       className={`border-solid border-2 px-2 text-bold hover:bg-gray-200 ${cls}`}
       onClick={onClick}
     >

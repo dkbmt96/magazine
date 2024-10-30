@@ -6,7 +6,7 @@ const Tag = require("./models/Tag");
 const User = require("./models/User");
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/newsdb", {
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/newsdb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

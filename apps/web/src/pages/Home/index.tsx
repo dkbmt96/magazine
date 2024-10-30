@@ -9,27 +9,22 @@ import News from "./containers/News";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "@redux/dataSlice";
 
-const CATEGORIES = ["Business", "Technology", "Entertainment", "Sports"];
-
-const CATEGORIES2 = ["Popular", "Latest"];
-
 const Home: React.FC = () => {
-  
-  const { loading, categories, news, error } = useSelector(
-    (state) => state.data
-  );
-
-  console.log({ loading, categories, news, error });
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+  const { categories, news } = useSelector((state) => state.data);
 
   return (
     <Layout
       upperContent={
         <div>
-          <MiniCards news={news}/>
+          <MiniCards news={news} />
           <section>
             <div className="flex my-4 gap-4">
               <div className="w-2/3">
-                <Slider items={[]} />
+                <Slider items={news} />
               </div>
               <div className="flex-1">
                 <CategoriesBar />
@@ -38,12 +33,12 @@ const Home: React.FC = () => {
           </section>
           <section className="feature">
             <BlockHeader header="Featured" link="/" />
-            <Slider items={[]} picPerSlide={4} />
+            <Slider items={news} picPerSlide={4} />
           </section>
           <section className="categories">
             <div className="grid grid-cols-2 gap-4 mt-4">
-              {CATEGORIES.map((cat) => (
-                <Category key={cat} header={cat} items={[]} />
+              {categories?.slice(0, 4)?.map((cat) => (
+                <Category key={cat.id} header={cat.name} items={cat.news} />
               ))}
             </div>
           </section>
@@ -52,7 +47,7 @@ const Home: React.FC = () => {
     >
       <section className="info">
         <div className="mt-4">
-          {CATEGORIES2.map((cat) => (
+          {["Popular", "Latest"].map((cat) => (
             <News key={cat} header={cat} items={[]} />
           ))}
         </div>

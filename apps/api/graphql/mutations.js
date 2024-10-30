@@ -1,6 +1,7 @@
 const { GraphQLObjectType, GraphQLString, GraphQLID } = require("graphql");
-const { Comment, Category, News } = require("../models/index.js");
+const { Comment, Category, News, User } = require("../models/index.js");
 const { CategoryType, NewsType, CommentType } = require("../types/index.js");
+const { name } = require("./queries.js");
 
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -34,13 +35,19 @@ const Mutation = new GraphQLObjectType({
       type: CommentType,
       args: {
         newsId: { type: GraphQLID },
-        author: { type: GraphQLID },
+        name: { type: GraphQLString },
         content: { type: GraphQLString },
       },
-      resolve(_, args) {
+      async resolve(_, args) {
+        const user = new User({
+          name: args.name,
+          avatar: 'https://api.dicebear.com/9.x/lorelei/svg?size=64',
+          userName: args.name
+        });
+        await user.save();
         const comment = new Comment({
           news: args.newsId,
-          author: args.author,
+          author: user._id,
           content: args.content,
         });
         return comment.save();

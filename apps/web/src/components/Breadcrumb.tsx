@@ -1,8 +1,7 @@
 import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 
-const Breadcrumb: React.FC = () => {
-
+const Breadcrumb: React.FC<{ type: string }> = ({ type }) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
@@ -15,6 +14,13 @@ const Breadcrumb: React.FC = () => {
           </Link>
         </li>
         {pathnames.map((pathname, index) => {
+          if (index === pathnames.length - 1) {
+            return (
+              <li className="before:content-['>'] before:mx-2" key={type}>
+                <span>{type}</span>
+              </li>
+            );
+          }
           const to = `/${pathnames.slice(0, index + 1).join("/")}`;
           return (
             <li className="before:content-['>'] before:mx-2" key={to}>

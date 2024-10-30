@@ -1,14 +1,9 @@
 import React from "react";
 import Button from "./Button";
-import { UserComment } from "@types";
+import { Comment as UserComment } from "@types";
 
-const Comment: React.FC<UserComment> = ({
-  avatar,
-  comment,
-  id,
-  updateAt,
-  userName,
-}) => {
+const Comment: React.FC<UserComment> = ({ id, author, content, createdAt }) => {
+  const { name, avatar } = author;
   return (
     <div className="mt-4">
       <div className="flex items-start gap-4">
@@ -17,10 +12,10 @@ const Comment: React.FC<UserComment> = ({
         </div>
         <div className="flex flex-col">
           <div className="mt-2 text-gray-700">
-            <span className="text-red-500">{userName}</span>{" "}
-            <span className="font-italic">{updateAt}</span>
+            <span className="text-red-500">{name}</span>{" "}
+            <span className="font-italic">{createdAt}</span>
           </div>
-          <div className="my-2 text-gray-700">{comment}</div>
+          <div className="my-2 text-gray-700">{content}</div>
           <div>
             <Button
               onClick={() => {

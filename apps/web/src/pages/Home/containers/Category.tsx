@@ -5,38 +5,6 @@ import Button from "@components/Button";
 import { incrementSequence } from "@utils";
 import VCard from "@components/VCard";
 
-const ITEMS: Card[] = [
-  {
-    id: "123",
-    url: "/images/6.png",
-    category: "Technology",
-    updateAt: "Jan 01 2022",
-    title: 'Sanctus amit sed ipsum lorem'
-  },
-
-  {
-    id: "234",
-    url: "/images/7.png",
-    category: "Business",
-    updateAt: "Feb 01 2023",
-    title: 'Sanctus amit sed ipsum lorem'
-  },
-  {
-    id: "456",
-    url: "/images/3.png",
-    category: "Entertaiment",
-    updateAt: "Jul 02 2022",
-    title: 'Sanctus amit sed ipsum lorem'
-  },
-  {
-    id: "678",
-    url: "/images/2.png",
-    category: "Sports",
-    updateAt: "Sep 01 2022",
-    title: 'Sanctus amit sed ipsum lorem'
-  },
-];
-
 const Category: React.FC<{
   header: string;
   items: Card[];
@@ -62,10 +30,10 @@ const Category: React.FC<{
           </div>
         }
       />
-      <div className={`flex gap-4`}>
+      <div className={`grid grid-cols-${picPerSlide} gap-4`}>
         {index.map((i) => (
-          <div className={`overflow-hidden w-1/${picPerSlide}`}>
-            <VCard {...ITEMS[i]} />
+          <div className={`overflow-hidden`}>
+            <VCard {...items[i]} />
           </div>
         ))}
       </div>

@@ -3,6 +3,9 @@ import Layout from "@layout/Layout";
 import React from "react";
 import Comments from "./containers/Comments";
 import Breadcrumb from "@components/Breadcrumb";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNewsById } from "@redux/dataSlice";
 
 const ITEM = {
   id: "234",
@@ -14,10 +17,29 @@ const ITEM = {
 };
 
 const News: React.FC = () => {
+  const params = useParams();
+  const id = params?.id || 1;
+
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchNewsById({ id: id }));
+  }, [dispatch, id]);
+  const { currentNews } = useSelector((state) => state.data);
   return (
-    <Layout upperContent={<Breadcrumb />}>
-      <BigContent {...ITEM} />
-      <Comments />
+    <Layout upperContent={<Breadcrumb type="Technology" />}>
+      {currentNews && (
+        <>
+          <BigContent
+            id={currentNews.id}
+            title={currentNews.title}
+            content={currentNews.content}
+            category={currentNews.category.name}
+            image={currentNews.image}
+            createdAt={currentNews.createdAt}
+          />
+          <Comments id={currentNews.id} comments={currentNews.comments} />
+        </>
+      )}
     </Layout>
   );
 };

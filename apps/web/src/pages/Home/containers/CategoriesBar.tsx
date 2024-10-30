@@ -1,7 +1,8 @@
 import React from "react";
 import BlockHeader from "@components/BlockHeader";
 import { Link } from "react-router-dom";
-
+import { fetchCategories } from "@redux/dataSlice";
+import { useDispatch, useSelector } from "react-redux";
 const ITEMS = [
   {
     id: "123",
@@ -27,21 +28,28 @@ const ITEMS = [
 ];
 
 const CategoriesBar: React.FC = () => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+  const { categories, loading } = useSelector((state) => state.data);
   return (
     <div className="flex flex-col gap-6">
-      <BlockHeader header="Categories" link="/categories"/>
-      {ITEMS.map((item) => (
+      <BlockHeader header="Categories" link="/categories" />
+      {categories?.map((item) => (
         <Link key={item.id} to={`/categories/${item.id}`}>
           <div
             className="w-full h-14 justify-center text-white text-2xl flex items-center"
             style={{
-              backgroundImage: `url(${item.url})`,
+              backgroundImage: `url(${item.background})`,
             }}
-          >{item.category}</div>
+          >
+            {item.name}
+          </div>
         </Link>
       ))}
     </div>
   );
 };
 
-export default CategoriesBar
+export default CategoriesBar;

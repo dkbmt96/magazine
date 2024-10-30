@@ -8,7 +8,7 @@ import QuickLinks from "../components/QuickLinks";
 const Footer: React.FC = () => {
   return (
     <footer>
-      <div className="flex gap-4 px-8 items-center bg-white pb-4">
+      <div className="flex gap-4 px-8 items-center bg-white pb-4 mt-4">
         <div className="basis-1/4">
           <BottomLogo />
         </div>

@@ -24,17 +24,21 @@ export type News = {
 
 export type Card = {
   id?: string;
-  url: string;
+  image: string;
   title?: string;
   content?: string;
   category: string;
-  updateAt?: string;
+  createdAt?: string;
+}
+
+type User = {
+  avatar: string;
+  name: string
 }
 
 export type Comment = {
-  id: string;
-  userName: string;
-  avatar: string;
-  updateAt: string;
-  comment: string;
+  id: string,
+  author: User,
+  content: string,
+  createdAt?: string;
 };

@@ -7,7 +7,7 @@ const cors = require('cors');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/newsdb', {
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/newsdb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

@@ -1,53 +1,38 @@
 import Button from "@components/Button";
 import Comment from "@components/Comment";
+import { createComment, fetchNewsById } from "@redux/dataSlice";
 import React from "react";
+import { useDispatch } from "react-redux";
 
-const comments = [
-  {
-    id: "12312132",
-    userName: "John Due",
-    avatar: "https://api.dicebear.com/9.x/bottts/svg?size=64",
-    updateAt: "01 Jan 2034",
-    comment:
-      "The integration of artificial intelligence (AI) into daily life is transforming various industries.",
-  },
-  {
-    id: "12312132",
-    userName: "John Due",
-    avatar: "https://api.dicebear.com/9.x/bottts/svg?size=64",
-    updateAt: "01 Jan 2034",
-    comment:
-      "The integration of artificial intelligence (AI) into daily life is transforming various industries.",
-  },
-  {
-    id: "12312132",
-    userName: "John Due",
-    avatar: "https://api.dicebear.com/9.x/bottts/svg?size=64",
-    updateAt: "01 Jan 2034",
-    comment:
-      "The integration of artificial intelligence (AI) into daily life is transforming various industries.",
-    children: [
-      {
-        id: "12312132",
-        userName: "John Due",
-        avatar: "https://api.dicebear.com/9.x/bottts/svg?size=64",
-        updateAt: "01 Jan 2034",
-        comment:
-          "The integration of artificial intelligence (AI) into daily life is transforming various industries.",
-      },
-      {
-        id: "12312132",
-        userName: "John Due",
-        avatar: "https://api.dicebear.com/9.x/bottts/svg?size=64",
-        updateAt: "01 Jan 2034",
-        comment:
-          "The integration of artificial intelligence (AI) into daily life is transforming various industries.",
-      },
-    ],
-  },
-];
+const Comments: React.FC<{ id: string; comments: any[] }> = ({
+  id,
+  comments,
+}) => {
+  const dispatch = useDispatch();
+  const handleSubmit = React.useCallback(
+    (event: any) => {
+      event.preventDefault();
 
-const Comments: React.FC = () => {
+      let obj = {};
+      // Here, you can perform an AJAX request or other actions
+      const formData = new FormData(event.target);
+      // Debugging: Log the FormData
+      for (const [key, value] of formData.entries()) {
+        console.log(key, value); // Check what's being collected
+        obj = {
+          ...obj,
+          [key]: value,
+        };
+      }
+
+      dispatch(
+        createComment({ newsId: id, name: obj.name, content: obj.message })
+      ).then(() => {
+        window.location.reload();
+      });
+    },
+    [id]
+  );
   return (
     <div className="my-4">
       <div className="bg-white p-4">
@@ -59,16 +44,16 @@ const Comments: React.FC = () => {
             let children = c.children;
             return (
               <div>
-                <Comment {...c} />
+                <Comment key={c.id} {...c} />
                 <div className="ml-16">
                   {children.map((child) => (
-                    <Comment {...child} />
+                    <Comment key={child.id} {...child} />
                   ))}
                 </div>
               </div>
             );
           }
-          return <Comment {...c} />;
+          return <Comment key={c.id} {...c} />;
         })}
       </div>
 
@@ -76,25 +61,48 @@ const Comments: React.FC = () => {
         <div className="w-full my-4 text-wrap text-3xl text-gray-600 font-bold">
           Leave a comment
         </div>
-        <form>
+        <form id="myForm" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">Name *</label>
-            <input className='border w-full my-2' name="name"></input>
+            <input
+              className="border w-full my-2 p-2"
+              id="name"
+              name="name"
+            ></input>
           </div>
           <div>
             <label htmlFor="email">Email *</label>
-            <input className='border w-full my-2'  name="email"></input>
+            <input
+              className="border w-full my-2 p-2"
+              id="email"
+              name="email"
+            ></input>
           </div>
           <div>
             <label htmlFor="website">Website</label>
-            <input className='border w-full my-2'  name="website"></input>
+            <input
+              className="border w-full my-2 p-2"
+              id="website"
+              name="website"
+            ></input>
           </div>
           <div>
             <label htmlFor="message">Message *</label>
-            <textarea rows={4} className='border w-full my-2'  name="message"></textarea>
+            <textarea
+              rows={4}
+              className="border w-full my-2 p-2"
+              name="message"
+              id="message"
+            ></textarea>
           </div>
+          <Button
+            type="submit"
+            cls="bg-red-700 text-white px-4 py-2"
+            onClick={() => {}}
+          >
+            Leave a comment
+          </Button>
         </form>
-        <Button cls="bg-red-700 text-white px-4 py-2" onClick={() => {}}>Leave a comment</Button>
       </div>
     </div>
   );
