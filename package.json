@@ -12,7 +12,6 @@
     "dev:gen": "cd apps/web && yarn generate",
     "dev:api": "cd apps/api && node index.js",
     "build:web": "cd apps/web && yarn build",
-    "build:api": "cd apps/api && yarn build",
     "seed": "cd apps/api && node seed.js",
     "up": "docker-compose up --build"
   },
