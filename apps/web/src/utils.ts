@@ -5,6 +5,6 @@ export function incrementSequence(arr: number[], maxValue: number) {
 }
 
 export const client = new ApolloClient({
-  uri: 'http://localhost:8901/graphql', // Replace with your GraphQL server URL
+  uri: process.env.BACKEND_URL || 'http://localhost:8901/graphql', // Replace with your GraphQL server URL
   cache: new InMemoryCache(),
 });
