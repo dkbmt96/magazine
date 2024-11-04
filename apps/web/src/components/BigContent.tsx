@@ -11,6 +11,7 @@ const BigContent: React.FC<Card> = ({
 }) => {
   const markup = { __html: content };
   const date = new Date(Number(createdAt)).toDateString();
+  const categoryName = category?.name || '';
   return (
     <div className="bg-white mt-4">
       <div className="w-full max-h-96 overflow-hidden flex items-center">
@@ -18,7 +19,7 @@ const BigContent: React.FC<Card> = ({
       </div>
       <div className="px-4">
         <div className="mt-4 text-gray-700">
-          <span className="text-red-500">{category}</span> / <span>{new Date(Number(createdAt)).toDateString()}111</span>
+          <span className="text-red-500">{categoryName}</span> / <span>{new Date(Number(createdAt)).toDateString()}111</span>
         </div>
         <div className="w-full my-4 text-wrap text-3xl text-gray-600 font-bold">
           {title}

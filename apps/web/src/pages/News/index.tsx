@@ -33,7 +33,7 @@ const News: React.FC = () => {
             id={currentNews.id}
             title={currentNews.title}
             content={currentNews.content}
-            category={currentNews.category.name}
+            category={currentNews.category}
             image={currentNews.image}
             createdAt={currentNews.createdAt}
           />

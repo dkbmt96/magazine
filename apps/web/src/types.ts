@@ -4,22 +4,22 @@ export type Tag = {
 }
 
 export type Category = {
-  id: String
-  name: String
-  background: String
+  id: string
+  name: string
+  background: string
   news: News[]
 }
 
 export type News = {
-  id: String
-  title: String
-  content: String
-  createdAt: String
-  image: String
+  id: string
+  title: string
+  content: string
+  createdAt: string
+  image: string
   category: Category
   comments: Comment[]
   tag: Tag[]
-  thumbnail: String
+  thumbnail: string
 }
 
 export type Card = {
@@ -27,7 +27,7 @@ export type Card = {
   image: string;
   title?: string;
   content?: string;
-  category: string;
+  category: Category;
   createdAt?: string;
 }
 

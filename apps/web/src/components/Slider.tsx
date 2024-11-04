@@ -38,16 +38,16 @@ const Slider: React.FC<Props> = ({ items, picPerSlide = 1 }) => {
           <div
             className={`flex flex-col-reverse gap-4 px-8 h-96 w-full`}
             style={{
-              backgroundImage: `url(${items[i].image})`,
+              backgroundImage: `url(${items[i]?.image})`,
             }}
           >
-            <Link key={i} to={`/news/${items[i].id}`}>
+            <Link key={i} to={`/news/${items[i]?.id}`} reloadDocument>
               <div className="text-white p-2 bg-gray-700/50 text-xl mb-4">
-                {items[i].title}
+                {items[i]?.title}
               </div>
             </Link>
             <div className="text-white p-2 bg-gray-700/50 text-sm">
-              {`${items[i].category.name}  /  ${new Date(Number(items[i].createdAt)).toDateString()}`}
+              {`${items[i]?.category?.name}  /  ${new Date(Number(items[i]?.createdAt)).toDateString()}`}
             </div>
           </div>
         ))}

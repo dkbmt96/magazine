@@ -10,9 +10,9 @@ const VCard: React.FC<Card> = ({
   createdAt,
   title,
 }) => {
-  const categoryName = category.name;
+  const categoryName = category?.name || '';
   return (
-    <Link to={`/news/${id}`}>
+    <Link to={`/news/${id}`} reloadDocument>
       <div className="flex flex-col items-center bg-white mt-4 py-4 h-96">
         <div className="w-64 h-32 relative overflow-hidden">
           <img

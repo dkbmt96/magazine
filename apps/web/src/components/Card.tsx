@@ -10,11 +10,11 @@ const Card: React.FC<CartType> = ({
   createdAt,
   title,
 }) => {
-  const categoryName = category.name;
+  const categoryName = category?.name || '';
   return (
     <div className="flex items-center bg-white">
       <div className="w-16 h-16 relative overflow-hidden">
-        <Link to={`/news/${id}`}>
+        <Link to={`/news/${id}`} reloadDocument>
           <img
             className="absolute top-1/2 left-1/2 w-auto h-full -translate-y-1/2 -translate-x-1/2"
             src={image}
@@ -31,7 +31,7 @@ const Card: React.FC<CartType> = ({
             </div>
           </div>
         )}
-        <Link to={`/news/${id}`}>
+        <Link to={`/news/${id}`} reloadDocument>
           <div className="font-bold pr-2 pt-2 h-12">{title}</div>
         </Link>
       </div>

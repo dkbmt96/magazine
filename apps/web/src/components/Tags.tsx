@@ -26,7 +26,7 @@ const Tags: React.FC<{ title?: string; tags: Tag[], header?: any }> = ({ header,
       <h2 className="font-bold text-xl mb-4">{title}</h2>
       <div className="flex gap-2 flex-wrap">
         {categories.map((tag) => (
-          <Link key={tag.id} to={`/category/${tag.id}`}>
+          <Link key={tag.id} to={`/categories/${tag.id}`} reloadDocument>
             <Button onClick={() => {}}>{tag.name}</Button>
           </Link>
         ))}
